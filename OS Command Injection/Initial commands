@@ -1,0 +1,21 @@
+Linux
+
+whoami
+uname -a
+ifconfig
+netstat -an
+ps -ef
+
+
+
+
+Windows
+
+whoami
+ver
+ipconfig /all
+netstat -an
+tasklist
+
+
+
